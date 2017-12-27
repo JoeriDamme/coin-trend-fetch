@@ -1,0 +1,9 @@
+{
+  "name": "coin-trend-fetch",
+  "version": "1.0.0",
+  "description": "Fetch data crypto currency",
+  "main": "index.js",
+  "repository": "git@github.com:JoeriDamme/coin-trend-fetch.git",
+  "author": "Joeri Damme <joeri.damme@kpn.com>",
+  "license": "MIT"
+}
