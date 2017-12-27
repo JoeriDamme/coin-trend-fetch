@@ -15,8 +15,9 @@ const logger = new (winston.Logger)({
   transports: [
     new (winston.transports.Console)({
       timestamp: moment().format(),
+      prettyPrint: true,
       colorize: true,
-      level: 'info'
+      level: 'debug'
     }),
     new (winston.transports.File)({
       filename: `${logDir}/results.log`,

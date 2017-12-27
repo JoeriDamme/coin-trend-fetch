@@ -5,7 +5,15 @@ const CoinSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  baseLinkUrl: {
+    type: String,
+    required: true
+  },
   imageUrl: {
+    type: String,
+    required: true
+  },
+  baseImageUrl: {
     type: String,
     required: true
   },
@@ -34,9 +42,9 @@ const CoinSchema = new mongoose.Schema({
     required: true
   },
   fullyPremined: {
-    type: Number,
+    type: Boolean,
     required: true,
-    default: 0
+    default: false
   },
   totalCoinSupply: {
     type: Number,
@@ -57,7 +65,18 @@ const CoinSchema = new mongoose.Schema({
     type: Number,
     required: true,
     default: 0
+  },
+  cryptoCompareKey: {
+    type: String,
+    required: true
+  },
+  cryptoCompareSponsored: {
+    type: Boolean,
+    required: true,
+    default: false
   }
+}, {
+  timestamps: true
 });
 
 module.exports = mongoose.model('Coin', CoinSchema);

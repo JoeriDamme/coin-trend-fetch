@@ -33,10 +33,9 @@ mongoose.connect(mongooseUri(), {
   });
 
 // print mongoose logs in dev env
-if (config.MONGOOSE_DEBUG) {
-  mongoose.set('debug', (collectionName, method, query, doc) => {
-    debug(`${collectionName}.${method}`, util.inspect(query, false, 20), doc);
-  });
-}
+mongoose.set('debug', (collectionName, method, query, doc) => {
+  logger.debug(`${collectionName}.${method}`, query, doc);
+});
+
 
 worker();
