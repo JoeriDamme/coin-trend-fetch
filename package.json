@@ -5,5 +5,20 @@
   "main": "index.js",
   "repository": "git@github.com:JoeriDamme/coin-trend-fetch.git",
   "author": "Joeri Damme <joeri.damme@kpn.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "commitizen": "^2.9.6",
+    "cross-env": "^5.1.3",
+    "eslint": "^4.14.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "debug": "^3.1.0",
+    "dotenv": "^4.0.0",
+    "joi": "^13.0.2",
+    "mongoose": "^4.13.7",
+    "winston": "^2.4.0"
+  }
 }
