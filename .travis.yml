@@ -11,10 +11,6 @@ services:
 cache:
   directories:
   - node_modules
-branches:
-  only:
-  - master
-  - develop
 git:
   depth: 3
 script:
