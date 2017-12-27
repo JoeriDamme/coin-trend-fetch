@@ -9,5 +9,5 @@ module.exports = () => {
     usernameAndOrPassword = `${config.mongo.username}:${config.mongo.password}@`;
   }
 
-  return `mongodb://${usernameAndOrPassword}${config.mongo.host}:${config.mongo.port}`;
+  return `mongodb://${usernameAndOrPassword}${config.mongo.host}:${config.mongo.port}/${config.mongo.db}`;
 };

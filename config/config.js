@@ -22,6 +22,8 @@ const envVarsSchema = Joi.object({
   MONGO_PASSWORD: Joi.string()
     .allow('')
     .default(''),
+  MONGO_DB: Joi.string()
+    .required(),
   MONGO_PORT: Joi.number()
     .default(27017)
 }).unknown()
@@ -35,12 +37,12 @@ if (error) {
 
 const config = {
   env: envVars.NODE_ENV,
-  port: envVars.PORT,
   mongooseDebug: envVars.MONGOOSE_DEBUG,
   mongo: {
     host: envVars.MONGO_HOST,
     username: envVars.MONGO_USERNAME,
     password: envVars.MONGO_PASSWORD,
+    db: envVars.MONGO_DB,
     port: envVars.MONGO_PORT
   }
 };
