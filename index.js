@@ -4,16 +4,31 @@ const Promise = require('bluebird');
 const config = require('./config/config');
 const debug = require('debug');
 const util = require('util');
+const logger = require('./config/winston');
+const mongooseUri = require('./utils/mongoose-uri');
+
+logger.info('configuration:', config);
 
 // plugin bluebird promise in mongoose
 mongoose.Promise = Promise;
 
 // connect to mongo db
-const mongoUri = config.mongo.host;
-mongoose.connect(mongoUri, { server: { socketOptions: { keepAlive: 1 } } });
-mongoose.connection.on('error', () => {
-  throw new Error(`unable to connect to database: ${mongoUri}`);
-});
+// const mongoUri = `mongodb://${config.mongo.username}:${config.mongo.password}@${config.mongo.host}:${config.mongo.port}`;
+mongoose.connect(mongooseUri(), {
+  useMongoClient: true,
+  keepAlive: 1,
+  connectTimeoutMS: 1000
+})
+  .then(() => {
+    logger.info(`connected to database: ${mongooseUri()}`);
+  })
+  .catch((err) => {
+    logger.error(`unable to connect to database: ${mongooseUri()}: ${err}`);
+    // fix because logger.err is async
+    setTimeout(() => {
+      process.exit();
+    }, 5000);
+  });
 
 // print mongoose logs in dev env
 if (config.MONGOOSE_DEBUG) {

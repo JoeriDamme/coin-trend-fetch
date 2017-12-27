@@ -8,8 +8,6 @@ const envVarsSchema = Joi.object({
   NODE_ENV: Joi.string()
     .allow(['development', 'production', 'test', 'provision'])
     .default('development'),
-  PORT: Joi.number()
-    .default(4040),
   MONGOOSE_DEBUG: Joi.boolean()
     .when('NODE_ENV', {
       is: Joi.string().equal('development'),
@@ -18,6 +16,12 @@ const envVarsSchema = Joi.object({
     }),
   MONGO_HOST: Joi.string().required()
     .description('Mongo DB host url'),
+  MONGO_USERNAME: Joi.string()
+    .allow('')
+    .default(''),
+  MONGO_PASSWORD: Joi.string()
+    .allow('')
+    .default(''),
   MONGO_PORT: Joi.number()
     .default(27017)
 }).unknown()
@@ -35,6 +39,8 @@ const config = {
   mongooseDebug: envVars.MONGOOSE_DEBUG,
   mongo: {
     host: envVars.MONGO_HOST,
+    username: envVars.MONGO_USERNAME,
+    password: envVars.MONGO_PASSWORD,
     port: envVars.MONGO_PORT
   }
 };
