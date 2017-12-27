@@ -6,6 +6,8 @@ const debug = require('debug');
 const util = require('util');
 const logger = require('./config/winston');
 const mongooseUri = require('./utils/mongoose-uri');
+const worker = require('./worker/index');
+global.fetch = require('node-fetch');
 
 logger.info('configuration:', config);
 
@@ -36,3 +38,5 @@ if (config.MONGOOSE_DEBUG) {
     debug(`${collectionName}.${method}`, util.inspect(query, false, 20), doc);
   });
 }
+
+worker();
