@@ -1,0 +1,57 @@
+{
+  "BaseImageUrl": "https://www.cryptocompare.com",
+  "BaseLinkUrl": "https://www.cryptocompare.com",
+  "Data": {
+    "BTC": {
+      "Algorithm": "SHA256",
+      "CoinName": "Bitcoin",
+      "FullName": "Bitcoin (BTC)",
+      "FullyPremined": "0",
+      "Id": "1182",
+      "ImageUrl": "/media/19633/btc.png",
+      "Name": "BTC",
+      "PreMinedValue": "N/A",
+      "ProofType": "PoW",
+      "SortOrder": "1",
+      "Sponsored": false,
+      "Symbol": "BTC",
+      "TotalCoinSupply": "21000000",
+      "TotalCoinsFreeFloat": "N/A",
+      "Url": "/coins/btc/overview"
+    },
+    "ETH": {
+      "Algorithm": "Ethash",
+      "CoinName": "Ethereum",
+      "FullName": "Ethereum (ETH)",
+      "FullyPremined": "0",
+      "Id": "7605",
+      "ImageUrl": "/media/20646/eth_logo.png",
+      "Name": "ETH",
+      "PreMinedValue": "N/A",
+      "ProofType": "PoW",
+      "SortOrder": "2",
+      "Sponsored": false,
+      "Symbol": "ETH",
+      "TotalCoinSupply": "0",
+      "TotalCoinsFreeFloat": "N/A",
+      "Url": "/coins/eth/overview"
+    },
+    "LTC": {
+      "Algorithm": "Scrypt",
+      "CoinName": "Litecoin",
+      "FullName": "Litecoin (LTC)",
+      "FullyPremined": "0",
+      "Id": "3808",
+      "ImageUrl": "/media/19782/litecoin-logo.png",
+      "Name": "LTC",
+      "PreMinedValue": "N/A",
+      "ProofType": "PoW",
+      "SortOrder": "3",
+      "Sponsored": false,
+      "Symbol": "LTC",
+      "TotalCoinSupply": "84000000",
+      "TotalCoinsFreeFloat": "N/A",
+      "Url": "/coins/ltc/overview"
+    }
+  }
+}

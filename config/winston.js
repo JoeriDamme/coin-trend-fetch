@@ -17,12 +17,14 @@ const logger = new (winston.Logger)({
       timestamp: moment().format(),
       prettyPrint: true,
       colorize: true,
-      level: 'debug'
+      level: 'debug',
+      silent: process.env.NODE_ENV === 'test'
     }),
     new (winston.transports.File)({
       filename: `${logDir}/results.log`,
       timestamp: moment().format(),
-      level: env === 'development' ? 'debug' : 'info'
+      level: env === 'development' ? 'debug' : 'info',
+      silent: process.env.NODE_ENV === 'test'
     })
   ]
 });

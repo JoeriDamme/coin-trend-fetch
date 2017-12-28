@@ -7,7 +7,7 @@ module.exports = () => {
   // count number coins currently in database:
   let currentNumberCoins;
 
-  Coin.count({})
+  return Coin.count({})
     .then((countResult) => {
       currentNumberCoins = countResult;
       logger.info(`${currentNumberCoins} coins currently in database`);
@@ -51,6 +51,7 @@ module.exports = () => {
     .then(() => Coin.count({}))
     .then((newCountResult) => {
       logger.info(`${newCountResult} coins currently in database after update. ${newCountResult - currentNumberCoins} new coins.`);
+      return Promise.resolve(true);
     })
     .catch((err) => {
       logger.error(err);
