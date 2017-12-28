@@ -7,7 +7,7 @@
   "author": "Joeri Damme <joeri.damme@kpn.com>",
   "license": "MIT",
   "scripts": {
-    "test": "mocha"
+    "test": "cross-env NODE_ENV=test ./node_modules/.bin/mocha --ui bdd --reporter spec --colors --recursive"
   },
   "devDependencies": {
     "chai": "^4.1.2",
@@ -16,7 +16,8 @@
     "eslint": "^4.14.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
-    "mocha": "^4.0.1"
+    "mocha": "^4.0.1",
+    "proxyquire": "^1.8.0"
   },
   "dependencies": {
     "bluebird": "^3.5.1",
