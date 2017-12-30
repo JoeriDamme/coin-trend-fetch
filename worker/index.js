@@ -59,15 +59,28 @@ module.exports = () => {
       logger.info(`${coinsParam.length} GET requests on https://min-api.cryptocompare.com/data/pricemultifull ...`);
 
       const cryptocomparePriceFullPromises = [];
-      coinsParam.forEach((value) => {
+      coinsParam.forEach((value, index) => {
+        if (index > 1) {
+          return;
+        }
+
         const req = cryptocompare.priceFull(value, ['USD', 'EUR']);
         cryptocomparePriceFullPromises.push(req);
       });
 
       return Promise.all(cryptocomparePriceFullPromises);
     })
-    .then((prices) => {
-      console.log(prices);
+    .then((priceData) => {
+
+      // concat all the results of the promises
+      const allPriceData = priceData.reduce((acc, currentObject) => {
+        Object.keys(currentObject).forEach((key) => {
+          acc[key] = currentObject[key];
+        });
+        return acc;
+      });
+
+
     })
     .catch((err) => {
       logger.error(err);
