@@ -79,4 +79,12 @@ const CoinSchema = new mongoose.Schema({
   timestamps: true
 });
 
+CoinSchema.statics.getAllCoinSymbols = function getAllCoinSymbols() {
+  return this.find({})
+    .select('cryptoCompareKey')
+    .exec()
+    .then(coins => Promise.resolve(coins.map(coin => coin.cryptoCompareKey)))
+    .catch(err => Promise.reject(err));
+};
+
 module.exports = mongoose.model('Coin', CoinSchema);

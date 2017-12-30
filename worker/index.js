@@ -2,6 +2,7 @@ const cryptocompare = require('cryptocompare');
 const logger = require('../config/winston');
 const Coin = require('./models/coin.model');
 const Promise = require('bluebird');
+const priceFullParams = require('../utils/price-full-params-array');
 
 module.exports = () => {
   // count number coins currently in database:
@@ -51,7 +52,22 @@ module.exports = () => {
     .then(() => Coin.count({}))
     .then((newCountResult) => {
       logger.info(`${newCountResult} coins currently in database after update. ${newCountResult - currentNumberCoins} new coins.`);
-      return Promise.resolve(true);
+      return Coin.getAllCoinSymbols();
+    })
+    .then((coinsArray) => {
+      const coinsParam = priceFullParams(coinsArray);
+      logger.info(`${coinsParam.length} GET requests on https://min-api.cryptocompare.com/data/pricemultifull ...`);
+
+      const cryptocomparePriceFullPromises = [];
+      coinsParam.forEach((value) => {
+        const req = cryptocompare.priceFull(value, ['USD', 'EUR']);
+        cryptocomparePriceFullPromises.push(req);
+      });
+
+      return Promise.all(cryptocomparePriceFullPromises);
+    })
+    .then((prices) => {
+      console.log(prices);
     })
     .catch((err) => {
       logger.error(err);
