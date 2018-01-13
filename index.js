@@ -26,7 +26,7 @@ mongoose.connect(mongooseUri(), {
     logger.error(`unable to connect to database: ${mongooseUri()}: ${err}`);
     // fix because logger.err is async
     setTimeout(() => {
-      process.exit();
+      process.exit(1);
     }, 5000);
   });
 
@@ -36,4 +36,19 @@ mongoose.set('debug', (collectionName, method, query, doc) => {
 });
 
 
-worker();
+worker()
+  .then(() => {
+    logger.info('Completed!');
+
+    // fix because logger.err is async
+    setTimeout(() => {
+      process.exit(0);
+    }, 5000);
+  })
+  .catch((err) => {
+    logger.error(`Failed!: ${err}`);
+    // fix because logger.err is async
+    setTimeout(() => {
+      process.exit(1);
+    }, 5000);
+  });
